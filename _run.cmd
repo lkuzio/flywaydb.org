@@ -1,6 +1,2 @@
 @echo off
-rem In case eventmachine fails to load:
-rem gem uninstall eventmachine
-rem gem install eventmachine --platform=ruby
-set PAGES_REPO_NWO=flyway/flywaydb.org
-bundle exec jekyll serve -w -L
+docker run --rm -v "%CD%:/srv/jekyll" -p 35729:35729 -p 4000:4000 -e PAGES_REPO_NWO='flyway/flywaydb.org' -it jekyll/jekyll:3.8 jekyll serve --livereload --incremental --force_polling
